@@ -92,7 +92,7 @@
         }
         .btn-calendar:active { background-color: #eee; transform: scale(0.98); }
 
-        .itinerary-section h2 { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold); }
+        .itinerary-section h2 { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold); margin-bottom: 30px;}
 
         .timeline { position: relative; padding-left: 50px; text-align: left; }
         .timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 2px; background: var(--timeline-line); }
@@ -104,6 +104,21 @@
         }
         .timeline-content { background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
         .timeline-time { font-family: 'Cinzel Decorative', serif; font-weight: 700; color: var(--gold); font-size: 1rem; }
+        
+        /* Nuevos Estilos para el Itinerario Detallado */
+        .timeline-subtitle {
+            display: block; font-size: 0.85rem; color: #666; margin-top: 5px; line-height: 1.4;
+        }
+        .artist-list {
+            margin: 10px 0 0 0; padding-left: 0; list-style: none; font-size: 0.85rem; color: #555;
+        }
+        .artist-list li {
+            margin-bottom: 6px; position: relative; padding-left: 12px; line-height: 1.4;
+        }
+        .artist-list li::before {
+            content: '•'; position: absolute; left: 0; color: var(--gold); font-weight: bold;
+        }
+        .artist-list strong { color: var(--dark); font-weight: 600; }
 
         .final-message { margin: 60px 0 30px 0; padding: 0 10px; }
         .emotive-text { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; }
@@ -162,12 +177,54 @@
         <div class="itinerary-section fade-in-section">
             <h2>Itinerario</h2>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-church"></i></div><div class="timeline-content"><span class="timeline-time">02:00 pm</span><br>Misa de honor</div></div>
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-door-open"></i></div><div class="timeline-content"><span class="timeline-time">06:00 pm</span><br>Recepción</div></div>
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div><div class="timeline-content"><span class="timeline-time">07:00 pm</span><br>Brindis</div></div>
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-music"></i></div><div class="timeline-content"><span class="timeline-time">08:00 pm</span><br>Baile de honor</div></div>
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-cocktail"></i></div><div class="timeline-content"><span class="timeline-time">09:00 pm</span><br>Fiesta</div></div>
-                <div class="timeline-item"><div class="timeline-icon"><i class="fas fa-microphone-alt"></i></div><div class="timeline-content"><span class="timeline-time">10:00 pm</span><br>Presentación de Artistas</div></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-church"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time">02:00 pm</span><br>
+                        Misa de honor
+                        <span class="timeline-subtitle"><strong>Ubicación:</strong> Iglesia Chaupimarca - Pasco</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-door-open"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time">06:00 pm</span><br>
+                        Recepción
+                        <span class="timeline-subtitle"><strong>Ubicación:</strong> Salón de eventos "Discoteck"</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <div class="timeline-content"><span class="timeline-time">07:00 pm</span><br>Brindis</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-music"></i></div>
+                    <div class="timeline-content"><span class="timeline-time">08:00 pm</span><br>Baile de honor</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-cocktail"></i></div>
+                    <div class="timeline-content"><span class="timeline-time">09:00 pm</span><br>Fiesta</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-time">10:00 pm</span><br>
+                        Presentación de Artistas
+                        <ul class="artist-list">
+                            <li><strong>Amenizado por:</strong> Gran Orquesta Juventud del Centro</li>
+                            <li><strong>Artista 1:</strong> Emelin Chávez</li>
+                            <li><strong>Artista 2:</strong> Lisbet de los Andes</li>
+                            <li><strong>Artista 3:</strong> Mayk y los Super Sensuales</li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </div>
 
@@ -203,12 +260,7 @@
         // Lógica de la Animación al hacer Scroll
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll('.fade-in-section');
-            const observerOptions = {
-                root: null,
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
+            const observerOptions = { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
             const observer = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -217,10 +269,7 @@
                     }
                 });
             }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            sections.forEach(section => { observer.observe(section); });
         });
     </script>
 </body>
